@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <!--输入：  meta:vp  按下tab键 自动生成   -->
+
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css"/>
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <style type="text/css">
+
+    </style>
+    <script>
+        //REM适配
+        (function (desW) { // 设计稿的宽度
+            var winW = document.documentElement.clientWidth; // 浏览器的宽度
+            var n = winW / desW;
+            document.documentElement.style.fontSize = n * 100 + "px";  // 100设置的
+        })(640);
+        //  640 设计稿的宽度
+        //（设计稿的宽度/100） =  （设备的宽度/  font-size的大小）
+        //  winW/desW  = font-size/100  ;
+
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="music">
+        <audio src="img/在人间.mp3" loop preload="none" id="audioMusic"></audio>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide1">
+                <img src="img/4444.png" alt="">
+
+                <div class="one">姓名:袁玉成</div>
+                <img src="img/3333.png" alt="">
+                <img src="img/yq423.png" alt="">
+                <img src="img/yq423.png" alt="">
+                <img src="img/yq423.png" alt="">
+            </div>
+            <div class="swiper-slide slide2">
+                <img src="img/zxcv.png" alt=""/>
+                <img src="img/tx.png" alt="">
+
+                <div class="aa">我性格开朗，思想活跃；拥有年轻人的朝气蓬勃；
+                    做事有责任心，条理性强；易与人相处，对工作充满热情；勤奋好学，
+                    敢挑重担，就要很强的团队精神好协调能力
+                </div>
+                <img src="img/xxx.png" alt=""/>
+                <img src="img/3456.png" alt=""/>
+                <img src="img/456l.png" alt=""/>
+            </div>
+            <div class="swiper-slide slide3">
+                <img src="img/zxcv.png" alt=""/>
+                <img src="img/xxx.png" alt=""/>
+                <img src="img/3456.png" alt=""/>
+                <img src="img/456l.png" alt=""/>
+
+                <div class="introduce">
+                    <p>姓名：袁玉成</p>
+
+                    <p>工作经验:三年</p>
+
+                    <p>毕业院校:山东大学</p>
+
+                    <p>家庭住址:山东省菏泽市</p>
+
+                    <p>求职方向:web工程师</p>
+                </div>
+                <img src="img/1233.png" alt=""/>
+            </div>
+            <div class="swiper-slide slide4">
+                <img src="img/232323.png" alt=""/>
+                <img src="img/7.png" alt=""/>
+                <p>工作经验</p>
+                <img src="img/4.png" alt=""/>
+               <div class="yy">
+                   <span>北京星星科技</span>
+                   <span>北京创新软件公司</span>
+                   <span>北京华信捷通科技公司</span>
+               </div>
+                <img src="img/020.png" alt=""/>
+                <div class="ss">
+                    <span>熟练掌握 html,css,js,jquery,ajax</span>
+                </div>
+                <!--<img src="img/5555.png" alt=""/>-->
+            </div>
+            <div class="swiper-slide slide5">
+                <img src="img/029.png" alt=""/>
+                <div class="one1"><img src="img/shou.png" alt=""/><a href="">17610309015</a></div>
+                <div class="one2"><img src="img/you.png" alt=""/><a href="">397165051@qq.com</a></div>
+                <div class="one3"><img src="img/wei.png" alt=""/><a href="">北京市海淀区</a></div>
+                <img src="img/yq0.jpg" alt=""/>
+                <img src="img/ewm.png" alt=""/>
+                <img src="" alt=""/>
+            </div>
+            
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="js/swiper.min.js"></script>
+
+<script>
+
+
+    //初始化swiper
+    var mySwiper = new Swiper(".swiper-container", {
+        direction: "vertical",
+        loop: true,
+        onSlideChangeEnd: function (swiper) {
+            var slideAry = swiper.slides;
+            /*所有的滑块*/
+            var trueSlideNum = slideAry.length - 2;
+            /*真实的滑块的个数*/
+            var lastNum = trueSlideNum + 1;
+            /*最后一个滑块的索引*/
+            /*获得当前滑块的索引*/
+            var curIn = swiper.activeIndex;
+            [].forEach.call(slideAry, function (item, index) {
+                item.id = null;
+                if (curIn == index) {
+                    /*第一张跟真实滑块最后一张是一样的，最后一张跟真实滑块的第一张是一样*/
+                    switch (curIn) {
+                        case 0 :
+                            item.id = "page" + trueSlideNum;
+                            break;
+                        case lastNum :
+                            item.id = "page1";
+                            break;
+                        default :
+                            item.id = "page" + curIn;
+
+                    }
+                }
+
+            })
+
+        }
+    })
+
+    ~(function () {
+        var music = document.querySelector(".music");
+        var audioMusic = document.querySelector("#audioMusic");
+        music.addEventListener("click", function () {
+            if (audioMusic.paused) {/*判断是否是停止*/
+                audioMusic.play();
+                music.className = "music musicMove";
+                return;
+            }
+            audioMusic.pause();
+            music.className = "music";
+            music.style.opacity = 1;
+        });
+        window.setTimeout(function () {
+            audioMusic.play();
+            /*播放*/
+            /*边播放边缓存，触发事件canplay*/
+            audioMusic.addEventListener("canplay", function () {
+                music.className = "music musicMove";
+            })
+        }, 1000)
+
+
+    })()
+
+</script>
